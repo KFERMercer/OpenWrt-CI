@@ -1,10 +1,3 @@
-#=================================================
-#   Description: Build OpenWrt using GitHub Actions
-#   Lisence: MIT
-#   Author: P3TERX
-#   Blog: https://p3terx.com
-#=================================================
-
 name: Build OpenWrt
 
 on: 
@@ -56,20 +49,10 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone https://github.com/coolsnowwolf/lede openwrt
+        git clone https://github.com/KFERMercer/OpenWrt.git openwrt
         cd openwrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-
-    - name: Load Custom Configuration
-      run: |
-        ln -sf packages openwrt/package/diy-packages
-        ln -sf files openwrt/files
-        chmod +x diy.sh
-        [ -e ".config" ] && cp .config openwrt
-        cd openwrt
-        ../diy.sh
-        make defconfig
 
     - name: Download package
       run: |
@@ -80,8 +63,9 @@ jobs:
     - name: Build
       run: |
         cd openwrt
+        cp ./makeconfig.d/x86_64.config ./.config
         echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
+        cat ./.config | make -j$(nproc) V=s
 
     - name : Upload artifact
       uses: actions/upload-artifact@master

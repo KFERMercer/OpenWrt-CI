@@ -63,7 +63,6 @@ jobs:
         cp ./makeconfig.d/x86_64.config ./.config
         cat ./.config | make check
 
-
     - name: Download source code
       run: |
         cd openwrt
@@ -71,12 +70,11 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Build
+    - name: Compile firmware
       run: |
         cd openwrt
-        cp ./makeconfig.d/x86_64.config ./.config
         echo -e "$(nproc) thread build."
-        cat ./.config | make -j$(nproc) V=s
+        make -j$(nproc) V=s
 
     - name : Upload artifact
       uses: actions/upload-artifact@master

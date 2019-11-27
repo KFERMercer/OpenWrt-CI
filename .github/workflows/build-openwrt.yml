@@ -61,7 +61,7 @@ jobs:
       run: |
         cd openwrt
         cp ./makeconfig.d/x86_64.config ./.config
-        $( cat ./.config | make check -j$(nproc) ) > /dev/null 2>&1 || true
+        make defconfig
 
     - name: Download package source code
       run: |

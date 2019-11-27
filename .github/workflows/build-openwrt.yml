@@ -54,12 +54,6 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
-    - name: Download package
-      run: |
-        cd openwrt && make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-
     - name: Build
       run: |
         cd openwrt

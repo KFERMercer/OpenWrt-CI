@@ -50,13 +50,27 @@ jobs:
     - name: Clone source code
       run: |
         git clone https://github.com/KFERMercer/OpenWrt.git openwrt
+
+    - name: Update feeds
+      run: |
         cd openwrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
+    - name: Generate configure file
+      run: |
+        cp ./makeconfig.d/x86_64.config ./.config
+        cat ./.config | make check
+
+
+    - name: Download source code
+      run: |
+        cd openwrt && make download -j8
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
+
     - name: Build
       run: |
-        cd openwrt
         cp ./makeconfig.d/x86_64.config ./.config
         echo -e "$(nproc) thread build."
         cat ./.config | make -j$(nproc) V=s

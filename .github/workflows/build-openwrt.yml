@@ -47,9 +47,9 @@ jobs:
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
 
-    - name: Clone source code
+    - name: Download repo source code
       run: |
-        git clone https://github.com/KFERMercer/OpenWrt.git openwrt
+        git clone --depth=1 https://github.com/KFERMercer/OpenWrt.git openwrt
 
     - name: Update feeds
       run: |
@@ -61,9 +61,9 @@ jobs:
       run: |
         cd openwrt
         cp ./makeconfig.d/x86_64.config ./.config
-        $( cat ./.config | make check -j$(nproc) ) > /dev/null 2>&1
+        $( cat ./.config | make check -j$(nproc) ) > /dev/null 2>&1 || true
 
-    - name: Download source code
+    - name: Download package source code
       run: |
         cd openwrt
         make download -j8

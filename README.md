@@ -2,7 +2,7 @@
 
 ## 自动定制固件, 自动生成配置文件, 无需上传配置, 依赖自动调整.
 
-## 默认每天凌晨四点自动编译, 兼容 coolsnowwolf/lede 以及 OpenWrt trunk
+## 代码更新即自动编译, 兼容 coolsnowwolf/lede 以及 OpenWrt trunk
 
 感谢[P3TERX](https://github.com/P3TERX/Actions-OpenWrt)珠玉在前.
 

@@ -52,7 +52,7 @@ P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可�
 
 ### 2. fork [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede) 或者其他OpenWrt源.
 
-### (coolsnowwolf/lede已经合并此配置, 如果你pork了此库, 请忽略3. 4. 步)
+### (coolsnowwolf/lede已经合并此配置, 如果你pork了此库, 请忽略3. 4. 5.步)
 
 ### 3. 点击页面上方的`Create new file`按钮, 打开后在文件名处填入`.github/workflows/openwrt-ci.yml`(github 会自动创建路径).
 

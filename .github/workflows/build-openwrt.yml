@@ -74,12 +74,12 @@ jobs:
           #
           # 有些插件/选项是默认开启的, 如果想要关闭, 可以参照以下示例:
           # 
-          #       -----------------------------------------
-          #       |  # 取消编译VMware镜像:                 |
-          #       |  cat >> .config <<EOF                 |
-          # 	    |    # CONFIG_VMDK_IMAGES is not set    |
-          #       |  EOF                                  |
-          #       -----------------------------------------
+          #         -----------------------------------------
+          #         |  # 取消编译VMware镜像:                  |
+          #         |  cat >> .config <<EOF                  |
+          #         |    # CONFIG_VMDK_IMAGES is not set     |
+          #         |  EOF                                   |
+          #         -----------------------------------------
           #
 
           # 
@@ -201,5 +201,5 @@ jobs:
       - name : Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: OpenWrt
-          path: openwrt/bin
+          name: OpenWrt firmware
+          path: openwrt/bin/targets

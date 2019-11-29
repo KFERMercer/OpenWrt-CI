@@ -22,10 +22,11 @@ jobs:
           line 1
           line 2
           line 3
+          # line 4
           EOF
 
       - name : Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: OpenWrt firmware
+          name: test-file
           path: test-file

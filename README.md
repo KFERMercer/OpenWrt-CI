@@ -1,9 +1,8 @@
 # 使用 GitHub Actions 的 OpenWrt 在线集成自动编译环境.
 
 ## 自动定制固件, 自动生成配置文件, 无需上传配置, 依赖自动调整.
-## 默认每天凌晨四点自动编译, 兼容 coolsnowwolf/lede 以及 OpenWrt trunk.
 
-[KFERMercer/OpenWrt-CI](https://github.com/KFERMercer/OpenWrt-CI)
+## 代码更新即自动编译, 兼容 coolsnowwolf/lede 以及 OpenWrt trunk
 
 感谢[P3TERX](https://github.com/P3TERX/Actions-OpenWrt)珠玉在前.
 
@@ -18,7 +17,7 @@
 
 ---
 
-## 麻瓜级使用教程: (编写中)
+## 麻瓜级使用教程:
 
 > ### 这个CI脚本和[P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)的同样是云编译, 有什么不同?
 
@@ -48,11 +47,11 @@ P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可�
 - 对编译失败的处置能力 (脚本由我维护)
 - 梯子
 
-### 1. 注册GitHub账号并开启GitHub Actions (百度).
+### 1. 注册GitHub账号并开启GitHub Actions (自行搜索方法).
 
-### 2. fork [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede) 或者其他OpenWrt源.
+### 2. fork [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede) 或者[OpenWrt trunk](https://github.com/openwrt/openwrt).
 
-### (coolsnowwolf/lede已经合并此配置, 如果你pork了此库, 请忽略3. 4. 步)
+### (coolsnowwolf/lede已经合并此配置, 如果你pork了此库, 请忽略3. 4. 5.步)
 
 ### 3. 点击页面上方的`Create new file`按钮, 打开后在文件名处填入`.github/workflows/openwrt-ci.yml`(github 会自动创建路径).
 
@@ -73,4 +72,4 @@ P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可�
 
 > ### 如何下载到编译完成的固件?
 
-进入`Actions`标签页后, 如果相应的集成活动全部完成 (打勾) , 点击页面右上方的`Artifacts`即可看到你的固件 (通常是一个压缩包). 点击压缩包即可开始下载. (别人也可以下载你的固件, 是不是很神奇?)
+进入`Actions`标签页后, 如果相应的集成活动全部完成 (打勾) , 点击页面右上方的`Artifacts`即可看到你的固件 (通常是一个压缩包). 点击压缩包即可开始下载. (别人也可以下载你的固件, 不可思议.)

@@ -1,0 +1,35 @@
+name: CI-test
+
+on:
+  push:
+    branches: 
+      - master
+  # schedule:
+  #   - cron: 0 20 * * *
+  # release:
+  #   types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          ref: master
+
+      - name: Tset
+        run: |
+          touch ./test-file
+          cat >> ./test-file <<EOF
+          line 1
+          line 2
+          line 3
+          EOF
+
+      - name : Upload artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: OpenWrt firmware
+          path: /test-file

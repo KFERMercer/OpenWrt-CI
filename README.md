@@ -64,7 +64,7 @@ P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可�
 如果你希望定制你的固件:\
 代码里的注释部分详细介绍了如何在脚本中客制化你的固件. 简单来说, 你只需要解除注释相应行即可.
 
-### 正确的定制固件脚本脚本应该是长[这样的](https://github.com/KFERMercer/OpenWrt-by-lean/blob/CI-demo/.github/workflows/openwrt-ci.yml), 此配置基于大雕最新代码, 开启了所有预先写好的定制选项, 同时已经[经过测试](https://github.com/KFERMercer/OpenWrt-by-lean/commit/d31390d3e7b5f178d4e3456d401ded557c207398/checks?check_suite_id=334570354)可用. 悟性再高不如照葫芦画瓢, 如果你的配置一直编译失败, 抄, 请.
+### 正确的定制固件脚本应该是长[这样的](https://github.com/KFERMercer/OpenWrt-by-lean/blob/CI-demo/.github/workflows/openwrt-ci.yml), 此配置基于大雕最新代码, 开启了所有预先写好的定制选项, 同时已经[经过测试](https://github.com/KFERMercer/OpenWrt-by-lean/commit/d31390d3e7b5f178d4e3456d401ded557c207398/checks?check_suite_id=334570354)可用. 悟性再高不如照葫芦画瓢, 如果你的配置一直编译失败, 抄, 请.
 
 现在我们继续:
 

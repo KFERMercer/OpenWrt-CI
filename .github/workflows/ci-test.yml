@@ -3,7 +3,7 @@ name: CI-test
 on:
   push:
     branches: 
-      - master
+      - testBridge
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
         with:
-          ref: master
+          ref: testBridge
 
       - name: Tset
         run: |
@@ -23,6 +23,13 @@ jobs:
           line 2
           line 3
           # line 4
+          EOF
+
+          cat >> ./test-file <<EOF
+          line 5
+          line 6
+          # line 7
+          # line 8
           EOF
 
       - name : Upload artifact

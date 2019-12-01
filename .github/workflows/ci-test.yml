@@ -32,7 +32,7 @@ jobs:
           # line 8
           EOF
 
-      - run: scho 111111 >> ./test-file
+      - run: echo 111111 >> ./test-file
 
       - name: Upload artifact
         uses: actions/upload-artifact@master

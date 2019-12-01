@@ -197,7 +197,7 @@ jobs:
           sed -i 's/^[ \t]*//g' ./.config
           make defconfig
 
-      - name: Download package source code
+      - name: Make download
         run: |
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
@@ -208,8 +208,15 @@ jobs:
           echo -e "$(nproc) thread build."
           make -j$(nproc) V=s
 
+      - name: Assemble artifact
+        run: |
+          rm -rf ./artifact/
+          mkdir -p ./artifact/
+          find ./bin/targets/ -regex "*combined*img*" | xargs -i mv -f {} ./
+          find ./bin/targets/ -regex "*sysupgrade*bin*" | xargs -i mv -f {} ./
+
       - name : Upload artifact
         uses: actions/upload-artifact@master
         with:
           name: OpenWrt firmware
-          path: bin/targets
+          path: ./artifact/

@@ -32,8 +32,9 @@ jobs:
           # line 8
           EOF
 
-      - name : Upload artifact
-        run : scho 111111 >> ./test-file
+      - run: scho 111111 >> ./test-file
+
+      - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
           name: test-file

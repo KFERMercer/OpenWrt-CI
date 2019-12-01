@@ -17,7 +17,7 @@ jobs:
 
       - name: Tset
         run: |
-          touch ./a/b/test-file.1
+          touch ./test-file
           cat >> ./test-file <<EOF
           line 1
           line 2
@@ -25,30 +25,16 @@ jobs:
           # line 4
           EOF
 
-          touch ./c/d/test-file.2
-          cat >> ./a/b/test-file.2 <<EOF
+          cat >> ./test-file <<EOF
           line 5
           line 6
           # line 7
           # line 8
           EOF
 
-          touch ./c/d/test-file.3
-          cat >> ./a/b/test-file.2 <<EOF
-          line 5
-          line 6
-          # line 7
-          # line 8
-          EOF
-
-      - name: Upload artifact
+      - name : Upload artifact
+        run : scho 111111 >> ./test-file
         uses: actions/upload-artifact@master
         with:
-          - name: file.1
-            path: $(find ../dir/ -type f -name "*file.1*")
-
-          - name: file.2
-            path: $(find ../dir/ -type f -name "*file.2*")
-
-          - name: file.3
-            path: $(find ../dir/ -type f -name "*file.3*")
+          name: test-file
+          path: test-file

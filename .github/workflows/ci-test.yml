@@ -44,7 +44,11 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: test-file
-          - path: $(find ../dir/ -type f -name "*file.1*")
-          - path: $(find ../dir/ -type f -name "*file.2*")
-          - path: $(find ../dir/ -type f -name "*file.3*")
+          - name: file.1
+            path: $(find ../dir/ -type f -name "*file.1*")
+
+          - name: file.2
+            path: $(find ../dir/ -type f -name "*file.2*")
+
+          - name: file.3
+            path: $(find ../dir/ -type f -name "*file.3*")

@@ -1,5 +1,7 @@
 # 使用 GitHub Actions 的 OpenWrt 在线集成自动编译环境.
 
+## 12月4日更新: 增加自动同步上游并提交的CI. (`merge-upstream.yml`) →[使用教程](https://github.com/KFERMercer/OpenWrt-CI/blob/master/merge-upstream.md)
+
 ## 自动定制固件, 自动生成配置文件, 无需上传配置, 依赖自动调整.
 
 ## 代码更新即自动编译, 兼容 coolsnowwolf/lede 以及 OpenWrt trunk

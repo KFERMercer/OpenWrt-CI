@@ -26,6 +26,8 @@ jobs:
       uses: actions/checkout@master
       with:
         ref: master
+        fetch-depth: 0
+        lfs: true
 
     - name: Set git identity
       run : |
@@ -39,3 +41,4 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        

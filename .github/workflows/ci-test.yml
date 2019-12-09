@@ -6,36 +6,27 @@ on:
       - testBridge
 
 jobs:
-  build:
+
+  test:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-        with:
-          ref: testBridge
 
-      - name: Tset
-        run: |
-          touch ./test-file
-          cat >> ./test-file <<EOF
-          line 1
-          line 2
-          line 3
-          # line 4
-          EOF
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        ref: testBridge
+        fetch-depth: 0
+        lfs: true
 
-          cat >> ./test-file <<EOF
-          line 5
-          line 6
-          # line 7
-          # line 8
-          EOF
+    - name: Set git identity
+      run : |
+        git config --global user.email "KFER.Mercer@gmail.com"
+        git config --global user.name "KFERMercer"
 
-      - run: echo 111111 >> ./test-file
+    - name: Load upstream commits
+      run: git pull https://github.com/KFERMercer/OpenWrt-CI.git --no-edit --allow-unrelated-histories --strategy-option ours
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: test-file
-          path: test-file
+    - name: Push Commits
+      run: git push origin testBridge

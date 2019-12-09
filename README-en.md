@@ -1,4 +1,4 @@
-[🇨🇳 中文](README-zh.md) ←
+[中文](README.md) ←
 
 # OpenWrt CI - compile openwrt by GitHub Actions. 
 

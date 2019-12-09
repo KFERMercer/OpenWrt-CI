@@ -1,4 +1,4 @@
-[🇬🇧 English](README-en.md) ←
+[English](README-en.md) ←
 
 # 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
 
@@ -14,9 +14,9 @@
 
 > ### 这个CI脚本和[P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)的同样是云编译, 有什么不同?
 
-这个 CI 脚本可以帮助你在你的 OpenWrt 分支下构建当前库的Op固件, 无需上传配置文件, 不依赖外挂配置脚本, 所以不会污染库文件树, 对Op开发者比较友好.
+这个 CI 脚本可以帮助你在你的 OpenWrt 分支下构建当前库的Op固件, 无需上传配置文件, 不依赖外挂配置脚本, 真正的一次配置终生使用.
 
-P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可以快速搭建起可用的编译配置. 同时对新手及其友好. 但是由于 OpenWrt make configure 自身机制的缘故, 生成的配置文件鲁棒性较差, 需要经常重新生成上传配置, 有形中加重了维护负担, 使得使用起来不是很`优雅`, **但是强烈建议基础薄弱的玩家使用.**
+P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可以快速搭建起可用的编译配置; 同时对新手极其友好. 但是由于 OpenWrt make configure 自身机制的缘故, 生成的配置文件鲁棒性较差, 需要经常重新生成上传配置, 有形中加重了维护负担, 使得使用起来不是很`优雅`, **但是强烈建议基础薄弱的玩家使用.**
 
 > ### 这个CI脚本适合哪些人?
 

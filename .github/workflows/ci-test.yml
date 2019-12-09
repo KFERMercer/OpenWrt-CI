@@ -11,14 +11,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    DOWNSTREAM_BRANCH: testBridge
-
     steps:
 
     - name: Checkout
       uses: actions/checkout@master
       with:
-        ref: $DOWNSTREAM_BRANCH
+        ref: testBridge
         fetch-depth: 0
         lfs: true
 
@@ -35,4 +33,4 @@ jobs:
         git commit -m "add testfile"
 
     - name: Push Commits
-      run: git push origin $DOWNSTREAM_BRANCH
+      run: git push origin testBridge

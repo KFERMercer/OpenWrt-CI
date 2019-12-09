@@ -25,8 +25,12 @@ jobs:
         git config --global user.email "KFER.Mercer@gmail.com"
         git config --global user.name "KFERMercer"
 
-    - name: Load upstream commits
-      run: git pull https://github.com/KFERMercer/OpenWrt-CI.git --no-edit --allow-unrelated-histories --strategy-option ours
+    - name: Prepare
+      run: |
+        touch ./testfile
+        echo 123 > ./testfile
+        git add .
+        git commit -m "add testfile"
 
     - name: Push Commits
       run: git push origin testBridge

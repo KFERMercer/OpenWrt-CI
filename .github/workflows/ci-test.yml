@@ -7,7 +7,9 @@ on:
 
 jobs:
 
-  DOWNSTREAM_BRANCH: testBridge
+  env:
+
+    DOWNSTREAM_BRANCH: testBridge
 
   test:
 

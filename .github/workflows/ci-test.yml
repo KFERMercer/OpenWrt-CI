@@ -7,15 +7,15 @@ on:
 
 jobs:
 
-  env:
-
-    DOWNSTREAM_BRANCH: testBridge
-
   test:
 
     runs-on: ubuntu-latest
 
     steps:
+
+    env:
+
+      DOWNSTREAM_BRANCH: testBridge
 
     - name: Checkout
       uses: actions/checkout@master

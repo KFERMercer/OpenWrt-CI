@@ -1,13 +1,13 @@
 name: CI-test
 
-DOWNSTREAM_BRANCH: testBridge
-
 on:
   push:
     branches: 
-      - $DOWNSTREAM_BRANCH
+      - testBridge
 
 jobs:
+
+  DOWNSTREAM_BRANCH: testBridge
 
   test:
 

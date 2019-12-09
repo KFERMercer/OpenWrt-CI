@@ -28,11 +28,11 @@ jobs:
     - name: Prepare
       run: |
         touch ./testfile
-        echo 987654321 > ./testfile
+        echo 741258963 > ./testfile
         git add .
         git commit -m "add testfile"
 
     - name: Push Commits
       env:
         DOWNSTREAM_BRANCH: testBridge
-      run: git push origin &DOWNSTREAM_BRANCH
+      run: git push origin $DOWNSTREAM_BRANCH

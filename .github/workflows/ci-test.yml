@@ -1,9 +1,11 @@
 name: CI-test
 
+DOWNSTREAM_BRANCH: testBridge
+
 on:
   push:
     branches: 
-      - testBridge
+      - $DOWNSTREAM_BRANCH
 
 jobs:
 
@@ -16,7 +18,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       with:
-        ref: testBridge
+        ref: $DOWNSTREAM_BRANCH
         fetch-depth: 0
         lfs: true
 
@@ -28,9 +30,9 @@ jobs:
     - name: Prepare
       run: |
         touch ./testfile
-        echo 123 > ./testfile
+        echo 123456789 > ./testfile
         git add .
         git commit -m "add testfile"
 
     - name: Push Commits
-      run: git push origin testBridge
+      run: git push origin $DOWNSTREAM_BRANCH

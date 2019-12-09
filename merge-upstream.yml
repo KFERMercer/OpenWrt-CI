@@ -35,10 +35,9 @@ jobs:
         git config --global user.name "KFERMercer"
 
     - name: Load upstream commits
-      run: git pull https://github.com/coolsnowwolf/lede.git --no-edit --allow-unrelated-histories --strategy-option ours
+      run: git pull https://github.com/coolsnowwolf/lede.git --no-edit --strategy-option ours
 
     - name: Push Commits
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        
+      env:
+        DOWNSTREAM_BRANCH: master
+      run: git push origin $DOWNSTREAM_BRANCH

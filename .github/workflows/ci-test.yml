@@ -11,11 +11,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    DOWNSTREAM_BRANCH: testBridge
+
     steps:
-
-    env:
-
-      DOWNSTREAM_BRANCH: testBridge
 
     - name: Checkout
       uses: actions/checkout@master

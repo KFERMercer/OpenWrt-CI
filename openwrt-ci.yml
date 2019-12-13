@@ -42,6 +42,11 @@ jobs:
           sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
+          # <**隐藏功能**> 终极空间释放大法:
+          # sudo mkdir -p -m 777 /mnt/openwrt/dl /mnt/openwrt/feeds /mnt/openwrt/bin
+          # ln -s /mnt/openwrt/dl ./dl
+          # ln -s /mnt/openwrt/feeds ./feeds
+          # ln -s /mnt/openwrt/bin ./bin
           df -h
 
       - name: Update feeds
@@ -188,6 +193,7 @@ jobs:
         run: |
           make download -j8
           find ./dl/ -size -1024c -exec rm -f {} \;
+          df -h
 
       - name: Compile firmware
         run: |

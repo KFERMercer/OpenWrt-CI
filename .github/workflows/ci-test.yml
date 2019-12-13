@@ -27,12 +27,21 @@ jobs:
 
     - name: Prepare
       run: |
-        touch ./testfile
-        echo 741258963 > ./testfile
-        git add .
-        git commit -m "add testfile"
+          # modify apt mirrors
+          sudo cat > /etc/apt/sources.list <<EOF
+          deb http://archive.ubuntu.com/ubuntu/ boinc main restricted universe multiverse
+          # deb-src http://archive.ubuntu.com/ubuntu/ boinc main restricted universe multiverse
 
-    - name: Push Commits
-      env:
-        DOWNSTREAM_BRANCH: testBridge
-      run: git push origin $DOWNSTREAM_BRANCH
+          deb http://archive.ubuntu.com/ubuntu/ boinc-security main restricted universe multiverse
+          # deb-src http://archive.ubuntu.com/ubuntu/ boinc-security main restricted universe multiverse
+
+          deb http://archive.ubuntu.com/ubuntu/ boinc-updates main restricted universe multiverse
+          # deb-src http://archive.ubuntu.com/ubuntu/ boinc-updates main restricted universe multiverse
+
+          # deb http://archive.ubuntu.com/ubuntu/ boinc-proposed main restricted universe multiverse
+          # deb-src http://archive.ubuntu.com/ubuntu/ boinc-proposed main restricted universe multiverse
+
+          deb http://archive.ubuntu.com/ubuntu/ boinc-backports main restricted universe multiverse
+          # deb-src http://archive.ubuntu.com/ubuntu/ boinc-backports main restricted universe multiverse
+          EOF
+          cat /etc/apt/sources.list

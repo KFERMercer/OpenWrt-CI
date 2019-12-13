@@ -28,6 +28,13 @@ jobs:
     - name: Prepare
       run: |
         cat /etc/apt/sources.list
+        echo "======================="
+        echo "Space usage:"
+        echo "======================="
+        df -h
+        echo "======================="
+        du -h --max-depth=1 ./
+        du -h --max-depth=1 ./.git
 
     - name: Upload artifact
       uses: actions/upload-artifact@master

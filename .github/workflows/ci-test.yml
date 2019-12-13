@@ -36,8 +36,15 @@ jobs:
         du -h --max-depth=1 ./
         du -h --max-depth=1 ./.git
 
+        sudo mkdir /mnt/dl 
+        sudo chmod 777 /mnt/dl
+        ln -s /mnt/dl ./dl
+        echo 123 > ./dl/123
+        ls -al ./
+        ls -al ./dl
+
     - name: Upload artifact
       uses: actions/upload-artifact@master
       with:
         name: files
-        path: /etc/apt/
+        path: ./dl

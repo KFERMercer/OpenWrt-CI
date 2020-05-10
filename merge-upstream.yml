@@ -39,10 +39,14 @@ jobs:
 
     - name: Apply commit changes
       run: |
+        if [ -f ./.git/MERGE_MSG ]; then
         mkdir ./tmp && cp ./.git/MERGE_MSG ./tmp/message
         sed -i "1c [bot] AutoMerging: merge all upstream's changes:" ./tmp/message
         sed -i '/^\#.*/d' ./tmp/message
-        git commit --file="./tmp/message" || exit 0
+        git commit --file="./tmp/message"
+        else
+        echo "There is no merge commits."
+        fi
 
     - name: Push Commits
       env:

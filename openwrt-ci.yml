@@ -13,10 +13,10 @@ on:
   push:
     branches: 
       - master
-  # schedule:
-  #   - cron: 0 20 * * *
-  # release:
-  #   types: [published]
+  schedule:
+    - cron: 0 20 * * *
+  release:
+    types: [published]
 
 jobs:
 
@@ -54,6 +54,15 @@ jobs:
           # ln -s /mnt/openwrt/staging_dir ./staging_dir
 
           df -h
+
+       - name: 自定义插件主题
+        run: |
+          cd package
+          mkdir openwrt-packages
+          cd openwrt-packages
+          git clone https://github.com/tzxiaozhen88/luci-app-koolproxyR.git
+          git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git
+          git clone https://github.com/rosywrt/luci-theme-rosy.git
 
       - name: Update feeds
         run: |
@@ -99,21 +108,21 @@ jobs:
           # 
 
           # 编译x64固件:
-          # cat >> .config <<EOF
-          # CONFIG_TARGET_x86=y
-          # CONFIG_TARGET_x86_64=y
-          # CONFIG_TARGET_x86_64_Generic=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_TARGET_x86=y
+          CONFIG_TARGET_x86_64=y
+          CONFIG_TARGET_x86_64_Generic=y
+          EOF
 
           # 固件压缩:
-          # cat >> .config <<EOF
-          # CONFIG_TARGET_IMAGES_GZIP=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_TARGET_IMAGES_GZIP=y
+          EOF
 
           # 编译UEFI固件:
-          # cat >> .config <<EOF
-          # CONFIG_EFI_IMAGES=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_EFI_IMAGES=y
+          EOF
 
           # IPv6支持:
           # cat >> .config <<EOF
@@ -122,14 +131,14 @@ jobs:
           # EOF
 
           # 多文件系统支持:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_kmod-fs-nfs=y
-          # CONFIG_PACKAGE_kmod-fs-nfs-common=y
-          # CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-          # CONFIG_PACKAGE_kmod-fs-nfs-v4=y
-          # CONFIG_PACKAGE_kmod-fs-ntfs=y
-          # CONFIG_PACKAGE_kmod-fs-squashfs=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_kmod-fs-nfs=y
+          CONFIG_PACKAGE_kmod-fs-nfs-common=y
+          CONFIG_PACKAGE_kmod-fs-nfs-v3=y
+          CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+          CONFIG_PACKAGE_kmod-fs-ntfs=y
+          CONFIG_PACKAGE_kmod-fs-squashfs=y
+          EOF
 
           # USB3.0支持:
           # cat >> .config <<EOF
@@ -141,8 +150,8 @@ jobs:
           # EOF
 
           # 常用LuCI插件选择:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_luci-app-adbyby-plus=y
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_luci-app-adbyby-plus=y
           # CONFIG_PACKAGE_luci-app-aria2=y
           # CONFIG_PACKAGE_luci-app-baidupcs-web=y
           # CONFIG_PACKAGE_luci-app-docker=y
@@ -152,41 +161,69 @@ jobs:
           # CONFIG_PACKAGE_luci-app-openvpn=y
           # CONFIG_PACKAGE_luci-app-openvpn-server=y
           # CONFIG_PACKAGE_luci-app-qbittorrent=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
           # CONFIG_PACKAGE_luci-app-ttyd=y
-          # CONFIG_PACKAGE_luci-app-v2ray-server=y
+          CONFIG_PACKAGE_luci-app-v2ray-server=y
           # CONFIG_PACKAGE_luci-app-verysync=y
           # CONFIG_PACKAGE_luci-app-webadmin=y
           # CONFIG_PACKAGE_luci-app-wireguard=y
           # CONFIG_PACKAGE_luci-app-wrtbwmon=y
-          # EOF
+          # -----------自定义插件----------------------------
+          # koolproxyR去广告
+          CONFIG_PACKAGE_luci-app-koolproxyR=y
+          # -----------------------------------------------
+          # ADB广告过滤
+          CONFIG_PACKAGE_luci-app-adblock=y
+          # IP/MAC绑定
+          # CONFIG_PACKAGE_luci-app-arpbind=y
+          # 流量智能队列管理（QOS）
+          # CONFIG_PACKAGE_luci-app-sqm=y
+          # DNS服务器（方便解锁Netflix媒体服务）
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_DNS2SOCKS=y
+          # 解锁网易云灰色歌曲3合本
+          CONFIG_PACKAGE_luci-app-unblockmusic=y
+          # KMS服务器设置
+          CONFIG_PACKAGE_luci-app-vlmcsd=y
+          # 固件更新升级相关
+          CONFIG_PACKAGE_luci-app-attendedsysupgrade=y
+          # 文件传输（可web安装ipk包）
+          CONFIG_PACKAGE_luci-app-filetransfer=y
+          # Trojan代理
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+          # 依IP地址限速
+          # CONFIG_PACKAGE_luci-app-eqos=y
+          # Lienol大神
+          CONFIG_PACKAGE_luci-app-passwall=y
+          EOF
 
           # LuCI主题:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_luci-theme-argon=y
-          # CONFIG_PACKAGE_luci-theme-netgear=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_luci-theme-argon=y
+          CONFIG_PACKAGE_luci-theme-netgear=y
+          CONFIG_PACKAGE_luci-theme-atmaterial=y
+          CONFIG_PACKAGE_luci-theme-rosy=y
+          EOF
 
           # 常用软件包:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_curl=y
-          # CONFIG_PACKAGE_htop=y
-          # CONFIG_PACKAGE_nano=y
-          # CONFIG_PACKAGE_screen=y
-          # CONFIG_PACKAGE_tree=y
-          # CONFIG_PACKAGE_vim-fuller=y
-          # CONFIG_PACKAGE_wget=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_curl=y
+          CONFIG_PACKAGE_htop=y
+          CONFIG_PACKAGE_nano=y
+          CONFIG_PACKAGE_screen=y
+          CONFIG_PACKAGE_tree=y
+          CONFIG_PACKAGE_vim-fuller=y
+          CONFIG_PACKAGE_wget=y
+          EOF
 
           # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
-          # cat >> .config <<EOF
-          # # CONFIG_TARGET_IMAGES_PAD is not set
-          # # CONFIG_VMDK_IMAGES is not set
-          # EOF
+          cat >> .config <<EOF
+          # CONFIG_TARGET_IMAGES_PAD is not set
+          # CONFIG_VMDK_IMAGES is not set
+          EOF
 
           # 
           # ========================固件定制部分结束========================

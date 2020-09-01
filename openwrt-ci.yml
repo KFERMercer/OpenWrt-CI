@@ -13,8 +13,8 @@ on:
   push:
     branches: 
       - master
-  schedule:
-    - cron: 0 20 * * *
+  # schedule:
+  #   - cron: 0 20 * * *
   release:
     types: [published]
 
@@ -69,7 +69,7 @@ jobs:
           touch ./.config
 
           #
-          # ==在 cat >> .config <<EOF 到 EOF 之间粘贴你的编译配置, 需注意缩进关系==
+          # 在 cat >> .config <<EOF 到 EOF 之间粘贴你的编译配置, 需注意缩进关系
           # 例如:
 
           cat >> .config <<EOF
@@ -79,7 +79,7 @@ jobs:
           EOF
 
           #
-          # ===================================================================
+          # ===============================================================
           # 
 
           sed -i 's/^[ \t]*//g' ./.config
@@ -134,7 +134,7 @@ jobs:
         if: github.event == 'release'
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.STANDARD }}
+          repo_token: ${{ secrets.YOURTOKEN }}
           file: ./artifact/firmware/*
           tag: ${{ github.ref }}
           file_glob: true

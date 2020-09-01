@@ -1,7 +1,7 @@
 #
 # This is free software, lisence use MIT.
 # 
-# Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
+# Copyright (C) 2020 KFERMercer <KFER.Mercer@gmail.com>
 # 
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
@@ -16,6 +16,7 @@ on:
     - cron: 30 19 * * *
 
 jobs:
+
   merge:
 
     runs-on: ubuntu-latest
@@ -23,7 +24,7 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
       with:
         ref: master
         fetch-depth: 0

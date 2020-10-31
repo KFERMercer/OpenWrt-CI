@@ -10,13 +10,11 @@
 name: OpenWrt-Xiao Yu C5
 
 on:
-  push:
-    branches: 
-      - master
   schedule:
     - cron: 0 20 * * *
-  release:
-  types: [published]
+  push:
+    branches: 
+      - master 
 
 jobs:
 

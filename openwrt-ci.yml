@@ -46,7 +46,7 @@ jobs:
           sudo -E apt-get clean
       - name: 同步最新的源码
         run: |
-          git remote add openwrt https://github.com/coolsnowwolf/lede.git
+          git remote add openwrt https://github.com/openwrt/openwrt.git
           git pull openwrt master
           git remote -v
           

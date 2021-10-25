@@ -1,7 +1,7 @@
 #
 # This is free software, lisence use MIT.
 # 
-# Copyright (C) 2020 KFERMercer <KFER.Mercer@gmail.com>
+# Copyright (C) 2021 KFERMercer <KFER.Mercer@gmail.com>
 # 
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
@@ -10,7 +10,7 @@ name: Merge-upstream
 
 on:
   push:
-    branches: 
+    branches:
       - master
   schedule:
     - cron: 30 19 * * *
@@ -30,10 +30,12 @@ jobs:
         fetch-depth: 0
         lfs: true
 
-    - name: Set git identity
+    - name: Set git config
       run : |
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
+        git config --global pull.rebase false
+        git config --global --list
 
     - name: Load upstream commits
       run: git pull https://github.com/coolsnowwolf/lede.git --log --no-commit
@@ -43,7 +45,7 @@ jobs:
         if [ -f ./.git/MERGE_MSG ]; then
         mkdir ./tmp && cp ./.git/MERGE_MSG ./tmp/message
         sed -i "1c [bot] AutoMerging: merge all upstream's changes:" ./tmp/message
-        sed -i '/^\#.*/d' ./tmp/message
+        # sed -i '/^\#.*/d' ./tmp/message
         git commit --file="./tmp/message"
         else
         echo "There is no merge commits."
